@@ -37,7 +37,8 @@ export function initRouter() {
 
     async function loadPage(page) {
         try {
-            const resp = await fetch(`./partials/${page}.html`);
+            // Ruta absoluta (dev y prod)
+            const resp = await fetch(`/partials/${page}.html`);
             if (!resp.ok) throw new Error("No se pudo cargar " + page);
 
             main.classList.add("page-exit");
@@ -66,12 +67,14 @@ export function initRouter() {
         }
     }
 
-    // resto de funciones
+    // Cargar CSS dinámico de la página
     function loadCSS(page) {
+        // Elimina estilos previos
         document.querySelectorAll("link[data-page-style]").forEach(l => l.remove());
+
         const link = document.createElement("link");
         link.rel = "stylesheet";
-        link.href = `./css/${page}.css`;
+        link.href = `/css/${page}.css`;
         link.setAttribute("data-page-style", "");
         document.head.appendChild(link);
     }
