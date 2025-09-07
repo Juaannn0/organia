@@ -2,6 +2,13 @@
 import { loadHeader } from "./header.js";
 import { loadFooter } from "./footer.js";
 
+// Función para obtener la ruta base
+function getBasePath() {
+    // En desarrollo será "/" y en producción "./"
+    const script = document.querySelector('script[type="module"]');
+    return script?.getAttribute('data-vite-base') || './';
+}
+
 // Función para el efecto de typing 
 function typeEffect(element, text, speed, callback) {
     let i = 0;
@@ -34,11 +41,12 @@ function initHomePageEffects() {
 
 export function initRouter() {
     const main = document.querySelector("main");
+    const basePath = getBasePath();
 
     async function loadPage(page) {
         try {
-            // Ruta absoluta (dev y prod)
-            const resp = await fetch(`/partials/${page}.html`);
+            // Usar ruta relativa con el base path
+            const resp = await fetch(`${basePath}partials/${page}.html`);
             if (!resp.ok) throw new Error("No se pudo cargar " + page);
 
             main.classList.add("page-exit");
@@ -74,7 +82,8 @@ export function initRouter() {
 
         const link = document.createElement("link");
         link.rel = "stylesheet";
-        link.href = `/css/${page}.css`;
+        // Usar ruta relativa con el base path
+        link.href = `${basePath}css/${page}.css`;
         link.setAttribute("data-page-style", "");
         document.head.appendChild(link);
     }

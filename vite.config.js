@@ -1,13 +1,29 @@
 import { defineConfig } from "vite";
 
 export default defineConfig({
-  root: "src", // busca index.html en src
-  publicDir: "../public", // carpeta de archivos estáticos (partials, favicon, etc.)
+  root: "src",
+  base: "./", // rutas relativas para prod
+  publicDir: "../public",
   build: {
-    outDir: "../dist", // salida final
-    emptyOutDir: true, // limpia dist antes del build
+    outDir: "../dist",
+    emptyOutDir: true,
+    assetsDir: "assets", // Directorio para assets 
+    rollupOptions: {
+      input: {
+        main: "src/index.html",
+      },
+      output: {
+        // Mantener los nombres de los chunks CSS sin hash para facilitar la carga
+        assetFileNames: (assetInfo) => {
+          if (assetInfo.name.endsWith('.css')) {
+            return 'css/[name][extname]';
+          }
+          return 'assets/[name]-[hash][extname]';
+        },
+      },
+    },
   },
   server: {
-    open: true, // abre navegador automáticamente
+    open: true,
   },
 });

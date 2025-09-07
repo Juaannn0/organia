@@ -33,17 +33,16 @@ body {
 
 /* Estilos generales de la cabecera */
 .header {
-    background-color: transparent;;
+    background-color: transparent;
     color: var(--header-text-color);
-    padding: 1.2rem 2.5rem;
+    padding: 1rem 2rem 1.5rem; /* Aumentado el padding inferior */
     position: fixed;
     width: 100%;
     top: 0;
     left: 0;
     z-index: 1000;
-    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    transition: all 0.3s ease;
     backdrop-filter: blur(0);
-    transition: background-color 0.3s ease, box-shadow 0.3s ease, backdrop-filter 0.3s ease;
 }
 
 /* Estilo del header cuando el scroll ha bajado */
@@ -58,8 +57,9 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    max-width: 1200px; /* Limita el ancho del contenido */
-    margin: 0 auto; /* Centra el contenedor */
+    max-width: 1400px; /* Aumentado el ancho máximo */
+    margin: 0 auto;
+    padding: 0 1rem;
 }
 
 /* Enlace del logo y título */
@@ -72,7 +72,7 @@ body {
 }
 
 .logo {
-    width: 40px; /* Tamaño del logo */
+    width: 80px; /* Tamaño del logo */
     height: auto;
 }
 
@@ -306,6 +306,21 @@ main {
     color: var(--gray);
 }
 
+.disclaimer {
+    color: #666;
+    font-style: italic;
+    margin-top: 1rem;
+    display: block;
+}
+
+.legal-disclaimer {
+    color: #888;
+    text-align: center;
+    display: block;
+    margin-top: 0.5rem;
+    font-size: 0.8rem;
+}
+
 /* Animations */
 @keyframes float {
     0%, 100% { transform: translateY(0px) rotate(0deg); }
@@ -358,4 +373,52 @@ main {
 
 .hidden-page {
     display: none;
+}
+
+/* Ajustes responsivos para el header */
+@media (max-width: 768px) {
+    .header {
+        padding: 0.8rem 1rem 1rem;
+    }
+
+    .header-content {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .main-nav ul {
+        gap: 15px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .site-title {
+        font-size: 1.4rem;
+    }
+
+    .logo {
+        width: 60px;
+    }
+
+    .nav-link {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .header {
+        padding: 0.6rem 0.8rem 0.8rem;
+    }
+
+    .main-nav ul {
+        gap: 10px;
+    }
+
+    .site-title {
+        font-size: 1.2rem;
+    }
+
+    .logo {
+        width: 50px;
+    }
 }

@@ -51,3 +51,5 @@ Los archivos generados estarán en el directorio `dist/`.
 Este proyecto está diseñado para una potencial implementación en AWS. La arquitectura propuesta busca optimizar la escalabilidad, el rendimiento y la disponibilidad.
 
 Puedes encontrar un diagrama conceptual y la documentación detallada de la infraestructura, incluyendo los servicios clave utilizados, en el archivo [`INFRA.md`](./INFRA.md).
+
+http://organia-site.com.s3-website-us-east-1.amazonaws.com/
